@@ -1,0 +1,233 @@
+﻿@model EventosModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Aducionar Local";
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnEntrée</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="~/css/AdicionarEventos.css">
+</head>
+<body>
+    <div id="alertasDaPagina">
+        @if (TempData["MensagemSucesso"] != null)
+        {
+            <div id="alerta" class="alert alert-success" role="alert">
+                <button type="button" class="btn btn-outline-danger btn-sm close-alert" aria-label="Close">X</button>
+                @TempData["MensagemSucesso"]
+            </div>
+        }
+
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="btn btn-outline-success btn-sm close-alert" aria-label="Close">X</button>
+                @TempData["MensagemErro"]
+            </div>
+        }
+    </div>
+
+    <!-- Navbar já criada -->
+    <div id="links_Testos">
+        @* adicionando os links e o texto acima do formulario *@
+        <div class="text-white" style="display: flex; align-items: center;" id="links">
+            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index" style="margin-right: 0;">Home</a>
+            <span style="margin-left: -10px; color: #6D99FB"> / </span>
+            <a class="nav-link text-white" style="margin-left: -10px;" asp-area="" asp-controller="Eventos" asp-action="Index" style="margin-right: 0;">Eventos</a>
+            <span style="margin-left: -10px; color: #6D99FB"> / Adicionar</span>
+        </div>
+        <br />
+        <div class="text-white">
+            <h3>Adicionar Novo Evento</h3>
+            <p>*Campos obrigatorios</p>
+        </div>
+        <br />
+        @* começo do formulario *@
+    </div>
+    <form asp-controller="Eventos" asp-action="Editar" method="POST" id="FormularioEventos">
+        <div id="FundoCriarLocal">
+            <p class="text-white" style="margin-left: 10px; margin-top: 10px;">Informaçoes básicas</p>
+            <div class="conteiner text-white">
+                <div class="item item-1">
+                    <div class="col-md-11">
+                        <label for="validationCustom01" class="form-label">Nome do Evento*</label>
+                        <input asp-for="NomeDoEvento" type="text" class="form-control" id="Botoes" required>
+                        @Html.ValidationMessageFor(x => x.NomeDoEvento)
+                    </div>
+                </div>
+                <div class="item item-2">
+                    <div class="col-md-11">
+                        <label for="validationCustom01" class="form-label">Selecione um tipo</label>
+                        <select asp-for="TipoDeEvento" type="text" class="form-control" id="Botoes" style="overflow: auto;">
+                            <option value="conferencia">Conferência</option>
+                            <option value="workshop">Workshop</option>
+                            <option value="seminario">Seminário</option>
+                            <option value="webinar">Webinar</option>
+                            <option value="show">Show</option>
+                            <option value="festivalMusica">Festival de Música</option>
+                            <option value="concerto">Concerto</option>
+                            <option value="opera">Ópera</option>
+                            <option value="musical">Musical</option>
+                            <option value="partidaFutebol">Partida de Futebol</option>
+                            <option value="torneioFutebol">Torneio de Futebol</option>
+                            <option value="amistosoFutebol">Amistoso de Futebol</option>
+                            <option value="campeonatoRegional">Campeonato Regional</option>
+                            <option value="eventoBase">Evento de Futebol de Base</option>
+                            <option value="feira">Feira</option>
+                            <option value="exposicao">Exposição</option>
+                            <option value="lancamentoProduto">Lançamento de Produto</option>
+                            <option value="reuniaoNegocios">Reunião de Negócios</option>
+                            <option value="eventoBeneficente">Evento Beneficente</option>
+                            <option value="feiraEmprego">Feira de Emprego</option>
+                            <option value="eventoNetworking">Evento de Networking</option>
+                            <option value="eventoCorporativo">Evento Corporativo</option>
+                            <option value="cerimoniaPremiacao">Cerimônia de Premiação</option>
+                        </select>
+                        @Html.ValidationMessageFor(x => x.TipoDeEvento)
+                    </div>
+                </div>
+                <div class="item item-3">
+                    <div class="col-md-11">
+                        <label for="DataDoEvento" class="form-label">Data do evento*</label>
+                        <input asp-for="DataDoEvento" type="date" class="form-control" id="Botoes" required>
+                        @Html.ValidationMessageFor(x => x.DataDoEvento)
+                    </div>
+                </div>
+                <div class="item item-4">
+                    <div class="col-md-11">
+                        <label for="HoraDoEvento" class="form-label">Horário do começo evento*</label>
+                        <input asp-for="HoraDoEvento" type="time" class="form-control" id="Botoes" required>
+                        @Html.ValidationMessageFor(x => x.HoraDoEvento)
+                    </div>
+                </div>
+                <div class="item item-5">
+                    <div class="col-md-11">
+                        <label for="validationCustom01" class="form-label">Selecione um local*</label>
+                        <input  type="text" class="form-control" id="Botoes" required>
+                        
+                    </div>
+                </div>
+                <div class="item item-6">
+                    <div class="col-md-11">
+                        <label for="HoraDoEvento" class="form-label">Horário do fim evento*</label>
+                        <input asp-for="HoraDoFimEvento" type="time" class="form-control" id="Botoes" required>
+                        @Html.ValidationMessageFor(x => x.HoraDoFimEvento)
+                    </div>
+                </div>
+                <div class="item item-7">
+                    <hr />
+                    <p class="text-white" style="margin-left: 10px;">localização</p>
+                </div>
+
+                <div class="item item-8">
+                    <div class="item item-1">
+                        <div class="col-md-11">
+                            <label for="validationCustom01" class="form-label">E-mail*</label>
+                            <input asp-for="Email" type="email" class="form-control" id="Email" required style="background-color: #333B49; border: none; color: white;">
+                            <div class="invalid-feedback">E-mail inválido.</div>
+                            <div class="valid-feedback">E-mail válido.</div>
+                            @Html.ValidationMessageFor(x => x.Email)
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-9">
+                    <div class="item item-1">
+                        <div class="col-md-11">
+                            <label for="validationCustom01" class="form-label">Telefone</label>
+                            <input asp-for="Telefone" type="text" class="form-control" id="Telefone" maxlength="15" style="background-color: #333B49; border: none; color: white;">
+                            <div class="invalid-feedback">Telefone inválido.</div>
+                            <div class="valid-feedback">Telefone válido.</div>
+                            @Html.ValidationMessageFor(x => x.Telefone)
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-10">
+                    <hr />
+                </div>
+
+                <div class="item item-11">
+                    <div id="DivDosBotoes">
+                        <a class="btn" id="btnAdicinar" asp-controller="Eventos" asp-action="Index">Cancelar</a>
+                        <button class="btn" id="btnAdicinar">Cadastra</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </form>
+
+</body>
+
+</html>
+
+<style>
+    .valid-feedback {
+        color: green;
+    }
+
+    .invalid-feedback {
+        color: red;
+    }
+</style>
+
+<script>
+    function maskTelefone(value) {
+        return value
+            .replace(/\D/g, '') // Remove tudo o que não é dígito
+            .replace(/(\d{2})(\d)/, '($1) $2') // Coloca parênteses em volta dos dois primeiros dígitos
+            .replace(/(\d{4,5})(\d{4})/, '$1-$2') // Coloca um hífen entre o quarto ou quinto e o sexto dígitos
+            .slice(0, 15); // Limita a 15 caracteres
+    }
+
+    function validateEmail(value) {
+        return value.includes('@@');
+    }
+
+    function validateField(input, isValid) {
+        const invalidFeedback = input.nextElementSibling;
+        const validFeedback = invalidFeedback.nextElementSibling;
+        if (isValid) {
+            input.classList.remove('is-invalid');
+            input.classList.add('is-valid');
+            invalidFeedback.style.display = 'none';
+            validFeedback.style.display = 'block';
+        } else {
+            input.classList.remove('is-valid');
+            input.classList.add('is-invalid');
+            invalidFeedback.style.display = 'block';
+            validFeedback.style.display = 'none';
+        }
+    }
+
+    document.getElementById('Email').addEventListener('input', function (e) {
+        const value = e.target.value;
+        validateField(e.target, validateEmail(value));
+    });
+
+    document.getElementById('Telefone').addEventListener('input', function (e) {
+        const value = maskTelefone(e.target.value);
+        e.target.value = value;
+        validateField(e.target, value.length === 15);
+    });
+
+    document.getElementById('FormularioEventos').addEventListener('submit', function (e) {
+        const email = document.getElementById('Email');
+        const telefone = document.getElementById('Telefone');
+
+        const isEmailValid = validateEmail(email.value);
+        const isTelefoneValid = telefone.value.length === 15;
+
+        validateField(email, isEmailValid);
+        validateField(telefone, isTelefoneValid);
+
+        if (!isEmailValid || !isTelefoneValid) {
+            e.preventDefault(); // Impede o envio do formulário se algum campo for inválido
+        }
+    });
+</script>

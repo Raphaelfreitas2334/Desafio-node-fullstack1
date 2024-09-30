@@ -1,0 +1,25 @@
+﻿@model List<LocaisModel>
+
+@{
+    HashSet<int> locaisProcessados = ViewData["LocaisProcessados"] as HashSet<int> ?? new HashSet<int>();
+}
+
+@if (Model != null && Model.Any())
+{
+    bool status = true;
+
+    foreach (LocaisModel locais in Model)
+    {
+        if (!locaisProcessados.Contains(locais.Id) && status)
+        {
+            <a class="dropdown-item btn btn-sm" asp-area="" asp-controller="Locais" asp-action="Editar" asp-route-id="@locais.Id">
+                Editar
+            </a>
+            <a onclick="javascript:" class="dropdown-item btn btn-sm btn-Modal-Editar-Local" locais-id="@locais.Id">
+                Excluir
+            </a>
+            locaisProcessados.Add(locais.Id);
+            status = false;
+        }
+    }
+}

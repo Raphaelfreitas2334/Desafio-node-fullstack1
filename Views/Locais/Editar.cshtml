@@ -1,0 +1,351 @@
+﻿@model LocaisModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Editar Local";
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnEntrée</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="~/css/AdicionarLocais.css">
+</head>
+<body>
+    <div id="alertasDaPagina">
+        @if (TempData["MensagemSucesso"] != null)
+        {
+            <div id="alerta" class="alert alert-success" role="alert">
+                <button type="button" class="btn btn-outline-danger btn-sm close-alert" aria-label="Close">X</button>
+                @TempData["MensagemSucesso"]
+            </div>
+        }
+
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="btn btn-outline-success btn-sm close-alert" aria-label="Close">X</button>
+                @TempData["MensagemErro"]
+            </div>
+        }
+    </div>
+
+    <!-- Navbar já criada -->
+    <div id="links_Testos">
+        @* adicionando os links e o texto acima do formulario *@
+        <div class="text-white" style="display: flex; align-items: center;" id="links">
+            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index" style="margin-right: 0;">Home</a>
+            <span style="margin-left: -10px; color: #6D99FB"> / </span>
+            <a class="nav-link text-white" style="margin-left: -10px;" asp-area="" asp-controller="Locais" asp-action="Index" style="margin-right: 0;">Locais</a>
+            <span style="margin-left: -10px; color: #6D99FB"> / Editar</span>
+        </div>
+        <br />
+        <div class="text-white">
+            <h3>Editar Local</h3>
+            <p>*Campos obrigatorios</p>
+        </div>
+        <br />
+        @* começo do formulario *@
+    </div>
+    <form asp-controller="Locais" asp-action="Editar" method="POST" id="FormularioLocais">
+        <div id="FundoCriarLocal">
+            <p class="text-white" style="margin-left: 10px; margin-top: 10px;">Informaçoes básicas</p>
+            <div class="conteiner text-white">
+                <div class="item item-1">
+                    <div class="col-md-11">
+                        <label for="validationCustom01" class="form-label">Nome do Local*</label>
+                        <input asp-for="NomeLocal" type="text" class="form-control" id="Botoes" required>
+                        @Html.ValidationMessageFor(x => x.NomeLocal)
+                    </div>
+                </div>
+                <div class="item item-2">
+                    <div class="col-md-11">
+                        <label for="validationCustom01" class="form-label">Apelido</label>
+                        <input asp-for="Apelido" type="text" class="form-control" id="Botoes">
+                        @Html.ValidationMessageFor(x => x.Apelido)
+                    </div>
+                </div>
+                <div class="item item-3">
+                    <div class="col-md-11">
+                        <label for="validationCustom01" class="form-label">Seleciona um tipo*</label>
+                        <select asp-for="SelecioneTipo" type="text" class="form-control" id="Botoes" style="overflow: auto;">
+                            <option value="arena">Arena</option>
+                            <option value="auditorio">Auditório</option>
+                            <option value="biblioteca">Biblioteca</option>
+                            <option value="cinema">Cinema</option>
+                            <option value="clube">Clube</option>
+                            <option value="Centro Cultural">Centro Cultural</option>
+                            <option value="Centro de Convenções">Centro de Convenções</option>
+                            <option value="escola">Escola</option>
+                            <option value="Espaço de Eventos">Espaço de Eventos</option>
+                            <option value="estadio">Estádio</option>
+                            <option value="ginásio">Ginásio</option>
+                            <option value="hotel">Hotel</option>
+                            <option value="igreja">Igreja</option>
+                            <option value="museu">Museu</option>
+                            <option value="parque">Parque</option>
+                            <option value="praça">Praça</option>
+                            <option value="resort">Resort</option>
+                            <option value="Salão de Festas">Salão de Festas</option>
+                            <option value="teatro">Teatro</option>
+                            <option value="universidade">Universidade</option>
+
+                        </select>
+                        @Html.ValidationMessageFor(x => x.SelecioneTipo)
+                    </div>
+                </div>
+                <div class="item item-4">
+                    <div class="col-md-11">
+                        <label for="validationCustom01" class="form-label">CNPJ</label>
+                        <input asp-for="CNPJ" type="text" class="form-control" id="CNPJ" maxlength="18" required style="background-color: #333B49; border: none; color: white;">
+                        <div class="invalid-feedback">CNPJ inválido.</div>
+                        <div class="valid-feedback">CNPJ válido.</div>
+                        @Html.ValidationMessageFor(x => x.CNPJ)
+                    </div>
+                </div>
+
+                <div class="item item-14">
+                    <hr />
+                    <p class="text-white" style="margin-left: 10px;">localização</p>
+                </div>
+                <div class="item item-5">
+                    <div class="item item-1">
+                        <div class="col-md-11">
+                            <label for="validationCustom01" class="form-label">Cidade*</label>
+                            <input asp-for="Cidade" type="text" class="form-control" id="Botoes" required>
+                            @Html.ValidationMessageFor(x => x.Cidade)
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-6">
+                    <div class="item item-1">
+                        <div class="col-md-11">
+                            <label for="validationCustom01" class="form-label">Estado*</label>
+                            <select asp-for="Estado" type="text" class="form-control" id="Botoes" style="overflow: auto;">
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                            @Html.ValidationMessageFor(x => x.Estado)
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-7">
+                    <div class="item item-1">
+                        <div class="col-md-11">
+                            <label for="validationCustom01" class="form-label">CEP*</label>
+                            <input asp-for="CEP" type="text" class="form-control" id="CEP" maxlength="9" required style="background-color: #333B49; border: none; color: white;">
+                            <div class="invalid-feedback">CEP inválido.</div>
+                            <div class="valid-feedback">CEP válido.</div>
+                            @Html.ValidationMessageFor(x => x.CEP)
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-8">
+                    <div class="item item-1">
+                        <div class="col-md-11">
+                            <label for="validationCustom01" class="form-label">Endereço*</label>
+                            <input asp-for="Endereco" type="text" class="form-control" id="Botoes" required>
+                            @Html.ValidationMessageFor(x => x.Endereco)
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-9">
+                    <div class="item item-1">
+                        <div class="col-md-11">
+                            <label for="validationCustom01" class="form-label">Complemento</label>
+                            <input asp-for="Complemento" type="text" class="form-control" id="Botoes">
+                            @Html.ValidationMessageFor(x => x.Complemento)
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-15"><hr /></div>
+                <div class="item item-10">
+                    <div class="item item-9">
+                        <div class="item item-1">
+                            <div class="col-md-11">
+                                <label for="validationCustom01" class="form-label">E-mail</label>
+                                <input asp-for="Email" type="email" class="form-control" id="Email" required style="background-color: #333B49; border: none; color: white;">
+                                <div class="invalid-feedback">E-mail inválido.</div>
+                                <div class="valid-feedback">E-mail válido.</div>
+                                @Html.ValidationMessageFor(x => x.Email)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-11">
+                    <div class="item item-9">
+                        <div class="item item-1">
+                            <div class="col-md-11">
+                                <label for="validationCustom01" class="form-label">Telefone</label>
+                                <input asp-for="Telefone" type="text" class="form-control" id="Telefone" maxlength="15" required style="background-color: #333B49; border: none; color: white;">
+                                <div class="invalid-feedback">Telefone inválido.</div>
+                                <div class="valid-feedback">Telefone válido.</div>
+                                @Html.ValidationMessageFor(x => x.Telefone)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-16"><hr /></div>
+                <div class="item item-12">
+                    <div class="item item-9">
+                        <div class="item item-1">
+                            <div class="col-md-11">
+                                <label for="validationCustom01" class="form-label">Cadastre as entradas</label>
+                                <input asp-for="CadatroEntradas" type="text" class="form-control" id="Botoes">
+                                @Html.ValidationMessageFor(x => x.CadatroEntradas)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-13">
+                    <div class="item item-9">
+                        <div class="item item-1">
+                            <div class="col-md-11">
+                                <label for="validationCustom01" class="form-label">Cadastre as catracas</label>
+                                <input asp-for="CadatroCatracas" type="text" class="form-control" id="Botoes">
+                                @Html.ValidationMessageFor(x => x.CadatroCatracas)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-17"><hr /></div>
+                <div class="item item-18">
+                    <div id="DivDosBotoes">
+                        <a class="btn" id="btnAdicinar" asp-controller="Locais" asp-action="Index">Cancelar</a>
+                        <button class="btn" id="btnAdicinar">Cadastra</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
+<style>
+    .valid-feedback {
+        color: green;
+    }
+
+    .invalid-feedback {
+        color: red;
+    }
+</style>
+
+<script>
+    function maskCNPJ(value) {
+        return value
+            .replace(/\D/g, '') // Remove tudo o que não é dígito
+            .replace(/(\d{2})(\d)/, '$1.$2') // Coloca ponto entre o segundo e o terceiro dígitos
+            .replace(/(\d{3})(\d)/, '$1.$2') // Coloca ponto entre o quinto e o sexto dígitos
+            .replace(/(\d{3})(\d)/, '$1/$2') // Coloca uma barra entre o oitavo e o nono dígitos
+            .replace(/(\d{4})(\d)/, '$1-$2') // Coloca um hífen entre o décimo segundo e o décimo terceiro dígitos
+            .slice(0, 18); // Limita a 18 caracteres
+    }
+
+    function maskCEP(value) {
+        return value
+            .replace(/\D/g, '') // Remove tudo o que não é dígito
+            .replace(/(\d{5})(\d)/, '$1-$2') // Coloca um hífen entre o quinto e o sexto dígitos
+            .slice(0, 9); // Limita a 9 caracteres
+    }
+
+    function maskTelefone(value) {
+        return value
+            .replace(/\D/g, '') // Remove tudo o que não é dígito
+            .replace(/(\d{2})(\d)/, '($1) $2') // Coloca parênteses em volta dos dois primeiros dígitos
+            .replace(/(\d{4,5})(\d{4})/, '$1-$2') // Coloca um hífen entre o quarto ou quinto e o sexto dígitos
+            .slice(0, 15); // Limita a 15 caracteres
+    }
+
+    function validateEmail(value) {
+        return value.includes('@@');
+    }
+
+    function validateField(input, isValid) {
+        const invalidFeedback = input.nextElementSibling;
+        const validFeedback = invalidFeedback.nextElementSibling;
+        if (isValid) {
+            input.classList.remove('is-invalid');
+            input.classList.add('is-valid');
+            invalidFeedback.style.display = 'none';
+            validFeedback.style.display = 'block';
+        } else {
+            input.classList.remove('is-valid');
+            input.classList.add('is-invalid');
+            invalidFeedback.style.display = 'block';
+            validFeedback.style.display = 'none';
+        }
+    }
+
+    document.getElementById('CNPJ').addEventListener('input', function (e) {
+        const value = maskCNPJ(e.target.value);
+        e.target.value = value;
+        validateField(e.target, value.length === 18);
+    });
+
+    document.getElementById('CEP').addEventListener('input', function (e) {
+        const value = maskCEP(e.target.value);
+        e.target.value = value;
+        validateField(e.target, value.length === 9);
+    });
+
+    document.getElementById('Email').addEventListener('input', function (e) {
+        const value = e.target.value;
+        validateField(e.target, validateEmail(value));
+    });
+
+    document.getElementById('Telefone').addEventListener('input', function (e) {
+        const value = maskTelefone(e.target.value);
+        e.target.value = value;
+        validateField(e.target, value.length === 15);
+    });
+
+    document.getElementById('FormularioLocais').addEventListener('submit', function (e) {
+        const cnpj = document.getElementById('CNPJ');
+        const cep = document.getElementById('CEP');
+        const email = document.getElementById('Email');
+        const telefone = document.getElementById('Telefone');
+
+        const isCNPJValid = cnpj.value.length === 18;
+        const isCEPValid = cep.value.length === 9;
+        const isEmailValid = validateEmail(email.value);
+        const isTelefoneValid = telefone.value.length === 15;
+
+        validateField(cnpj, isCNPJValid);
+        validateField(cep, isCEPValid);
+        validateField(email, isEmailValid);
+        validateField(telefone, isTelefoneValid);
+
+        if (!isCEPValid || !isEmailValid) {
+            e.preventDefault(); // Impede o envio do formulário se algum campo for inválido
+        }
+    });
+</script>

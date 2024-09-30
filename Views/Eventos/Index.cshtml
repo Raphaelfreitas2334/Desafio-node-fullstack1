@@ -1,0 +1,109 @@
+﻿@model IEnumerable<projeto_cinema.Models.EventosModel>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnEntrée</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="~/css/Eventos.css">
+</head>
+<body>
+    <div id="alertasDaPagina">
+        @if (TempData["MensagemSucesso"] != null)
+        {
+            <div id="alerta" class="alert alert-success" role="alert">
+                <button type="button" class="btn btn-outline-danger btn-sm close-alert" aria-label="Close">X</button>
+                @TempData["MensagemSucesso"]
+            </div>
+        }
+
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="btn btn-outline-success btn-sm close-alert" aria-label="Close">X</button>
+                @TempData["MensagemErro"]
+            </div>
+        }
+    </div>
+    <div id="conteiner">
+        <div class="text-white" style="display: flex; align-items: center;" id="links">
+            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index" style="margin-right: 0;">Home</a>
+            <span style="margin-left: -10px; color: #6D99FB"> / Eventos</span>
+        </div>
+        <br />
+        <div class="text-white">
+            <h1>Eventos</h1>
+            <p>Confira a lista de todos os eventos cadastrados</p>
+        </div>
+        <br />
+        <div id="fundoTabela" class="text-white">
+            <div>
+                <a class="btn" id="btnAdicinar" asp-area="" asp-controller="Eventos" asp-action="Adicionar">Adicionar local</a>
+            </div>
+            <table class="table table-striped table-borderless" id="Tabela-Evento">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome do local</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Cidade e Estado</th>
+                        <th scope="col">Portões cadastrados</th>
+                        <th scope="col">Atualização</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                @{
+                    HashSet<int> eventosProcessados = ViewData["EventosProcessados"] as HashSet<int> ?? new HashSet<int>();
+                    ViewData["EventosProcessados"] = eventosProcessados;
+                }
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var eventos in Model)
+                        {
+                            var uniqueId = "dropdownMenuButton" + eventos.Id;
+                            <tr>
+                                <td>@eventos.NomeDoEvento</td>
+                                <td>@eventos.Telefone</td>
+                                <td>@eventos.DataDoEvento.ToShortDateString()</td>
+                                <td>@eventos.PortoesCadastrados</td>
+                                <td>@eventos.Email</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle" type="button" id="@uniqueId" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="~/image/more_vert-removebg-preview.png" alt="Alternate Text" />
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="@uniqueId">
+                                            <li>
+                                                @await Component.InvokeAsync("DropdownEventos", new { id = eventos.Id }) 
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
+<!--Modal para Excluir Evento-->
+<div id="ModalApagarEventos" class="modal" tabindex="-1">
+    <div class="modal-dialog custom-modal modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-white">Apagar Local</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="ApagarEventos"></div>
+            </div>
+        </div>
+    </div>
+</div>

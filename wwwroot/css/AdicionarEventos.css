@@ -1,0 +1,96 @@
+﻿body {
+    background-image: url('../image/Grid (3).jpg');
+    background-size: cover; /* Ajusta a imagem para cobrir todo o fundo */
+    background-repeat: no-repeat; /* Evita a repetição da imagem */
+    background-position: center; /* Centraliza a imagem */
+}
+
+#DivDosBotoes {
+    margin-left: 350px;
+}
+
+#btnAdicinar {
+    background-color: #EBF0F9;
+}
+
+#Botoes {
+    background-color: #333B49;
+    border: none;
+    color: white;
+}
+
+
+.conteiner {
+    display: grid;
+    margin-left: 10px;
+    grid-template-areas:
+        "i1 i2"
+        "i3 i4"
+        "i6 i5"
+        "i7 i7"
+        "i8 i9"
+        "i10 i10"
+        "i11 i11"
+        ;
+}
+
+.item1-1 {
+    grid-area: i1;
+}
+
+.item-2 {
+    grid-area: i2;
+}
+
+.item-3 {
+    grid-area: i3;
+}
+
+.item-4 {
+    grid-area: i4;
+}
+
+.item-5 {
+    grid-area: i5;
+}
+
+.item-6 {
+    grid-area: i6;
+}
+
+.item-7 {
+    grid-area: i7;
+}
+
+.item-8 {
+    grid-area: i8;
+}
+
+.item-9 {
+    grid-area: i9;
+}
+.item-10 {
+    grid-area: i10;
+}
+.item-11 {
+    grid-area: i11;
+}
+
+
+#links {
+    margin-left: -15px;
+}
+
+#FundoCriarLocal {
+    width: 50%; /* Defina a largura desejada */
+    height: auto;
+    margin: 0 auto; /* Centraliza horizontalmente */
+    background-color: #10141D; /* Apenas para visualização */
+    border-radius: 16px;
+}
+
+#links_Testos {
+    width: 50%; /* Defina a largura desejada */
+    height: auto;
+    margin: 0 auto; /* Centraliza horizontalmente */
+}

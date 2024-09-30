@@ -1,0 +1,57 @@
+﻿@model IEnumerable<projeto_cinema.Models.EventosModel>
+
+<table class="table text-white">
+    <thead>
+        <tr>
+            <th scope="col">Nome do local</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Portões cadastrados</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var local in Model)
+            {
+                <tr>
+                    <td>@local.NomeDoEvento</td>
+                    <td onclick="javascript:" class="badge badge-danger rounded-pill d-inline ">@local.TipoDeEvento</td>
+                    <td>@local.Telefone</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<style>
+    .badge {
+        display: inline-block !important;
+        padding: 0.25em 0.4em !important;
+        font-size: 75% !important;
+        font-weight: 700 !important;
+        line-height: 1 !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        vertical-align: baseline !important;
+        border-radius: 0.25rem !important;
+    }
+
+    .badge-danger {
+        color: #fff !important;
+        background-color: #dc3545 !important;
+    }
+
+    .rounded-pill {
+        border-radius: 50rem !important;
+    }
+
+    .d-inline {
+        display: inline !important;
+    }
+
+    tbody, td, tfoot, th, thead, tr {
+        border-color: inherit !important;
+        border-style: none !important;
+        border-width: 0 !important;
+    }
+</style>

@@ -1,0 +1,45 @@
+﻿#fundoModal {
+    background-image: url('../image/ModalContent.png');
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Ajusta a imagem para cobrir todo o fundo */
+    background-repeat: no-repeat; /* Evita a repetição da imagem */
+    background-position: center; /* Centraliza a imagem */
+}
+
+.custom-modal {
+    max-width: 400px; /* Ajuste a largura conforme necessário */
+    max-height: auto; /* Ajuste a altura conforme necessário */
+}
+
+#Botoes{
+    margin-left: 195px;
+}
+
+#btnApagar {
+    background-color: #6D99FB;
+    color: black;
+}
+
+#btnCancelar{
+    background-color: transparent;
+    border: 1px white solid;
+    color: white;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #333B49;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .3rem;
+    outline: 0;
+}

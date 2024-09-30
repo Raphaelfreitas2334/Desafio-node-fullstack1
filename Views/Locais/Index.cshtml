@@ -1,0 +1,117 @@
+﻿@model List<LocaisModel>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnEntrée</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="~/css/Locais.css">
+</head>
+<body>
+    <div id="alertasDaPagina">
+        @if (TempData["MensagemSucesso"] != null)
+        {
+            <div id="alerta" class="alert alert-success" role="alert">
+                <button type="button" class="btn btn-outline-danger btn-sm close-alert" aria-label="Close">X</button>
+                @TempData["MensagemSucesso"]
+            </div>
+        }
+
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="btn btn-outline-success btn-sm close-alert" aria-label="Close">X</button>
+                @TempData["MensagemErro"]
+            </div>
+        }
+    </div>
+    <!-- Navbar já criada -->
+    <div id="conteiner">
+        <div class="text-white" style="display: flex; align-items: center;" id="links">
+            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index" style="margin-right: 0;">Home</a>
+            <span style="margin-left: -10px; color: #6D99FB"> / Locais</span>
+        </div>
+        <br />
+        <div class="text-white">
+            <h1>Locais</h1>
+            <p>Confira a lista de todos os locais cadastrados</p>
+        </div>
+        <br />
+        <div id="fundoTabela" class="text-white">
+            <div>
+                <a class="btn" id="btnAdicinar" asp-area="" asp-controller="Locais" asp-action="Adicionar">Adicionar local</a>
+            </div>
+            <table class="table table-striped table-borderless" id="Tabela-Locais">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome do local</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Cidade e Estado</th>
+                        <th scope="col">Portões cadastrados</th>
+                        <th scope="col">Atualização</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                @{
+                    HashSet<int> locaisProcessados = ViewData["LocaisProcessados"] as HashSet<int> ?? new HashSet<int>();
+                    ViewData["LocaisProcessados"] = locaisProcessados;
+                }
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var locais in Model)
+                        {
+                            var uniqueId = "dropdownMenuButton" + locais.Id;
+                            <tr>
+                                <td>@locais.NomeLocal</td>
+                                <td>@locais.Endereco</td>
+                                <td>@locais.Cidade; @locais.Estado</td>
+                                <td>@locais.CadatroEntradas</td>
+                                <td>@locais.Data.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle" type="button" id="@uniqueId" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="~/image/more_vert-removebg-preview.png" alt="Alternate Text" />
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="@uniqueId">
+                                            <li>
+                                                @await Component.InvokeAsync("DropdownLocais", new { id = locais.Id })
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr class="odd"><td valign="top" colspan="6">Nenhum usuário encontrado</td></tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<!--Modal para Excluir Local-->
+<div id="ModalApagarLocais" class="modal" tabindex="-1">
+    <div class="modal-dialog custom-modal modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-white">Apagar Local</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="ApagarLocais"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿@model EventosModel
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnEntrée</title>
+    <link rel="stylesheet" href="~/css/Modais.css">
+</head>
+<body>
+    <div id="fundoModal">
+        <p class="text-white">Você tem certeza que deseja apagar o evento @Model.NomeDoEvento</p>
+    </div>
+    <div id="Botoes">
+        <a class="btn" id="btnCancelar" asp-area="" asp-controller="Eventos" asp-action="Index">Cancelar</a>
+        <a class="btn" method="post" id="btnApagar" asp-area="" asp-controller="Eventos" asp-action="Delete" asp-route-id="@Model.Id"><b>Apagar</b></a>
+    </div>
+
+</body>
+
+</html>
+

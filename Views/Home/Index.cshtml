@@ -1,0 +1,57 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnEntrée</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="~/css/Index.css">
+</head>
+<body>
+    <!-- Navbar já criada -->
+    <div class="conteiner">
+        <div class="item item-1" style="display: flex; align-items: flex-start;">
+            <img id="boneco" src="~/image/boneco-removebg-preview (1).png" alt="Alternate Text" style="margin-right: 10px;" />
+            <div style="margin-top: 25px;">
+                <h3 class="text-white">Olá, Nome</h3>
+                <p class="text-white">confira todos os seus eventos e locais em um só lugar</p>
+            </div>
+        </div>
+
+        <div class="item item-2">
+            <div class="image-text">
+                <h3 class="text-white"><img id="casa-estrela" src="~/image/MdFestival.png" alt="Alternate Text" />Locais</h3>
+            </div>
+            <p class="text-white">
+                confira todos os locais cadastrados
+                <a class="btn-locais" asp-area="" asp-controller="Locais" asp-action="Index"><b>Conferir Locais</b></a>
+            </p>
+        </div>
+        <div class="item item-3">
+            <div class="image-text">
+                <h3 class="text-white"><img id="casa-estrela" src="~/image/MdLocalActivity.png" alt="Alternate Text" />Eventos</h3>
+            </div>
+            <p class="text-white">
+                confira todos os Eventos Cadastrados
+                <a class="btn-locais" asp-area="" asp-controller="Eventos" asp-action="Index"><b>Conferir Eventos</b></a>
+            </p>
+        </div>
+        <div class="item item-4" style="overflow-y: auto;">
+            <div>
+                <p class="text-white" id="Titulo">Ultimos Locais adicionados</p>
+            </div>
+            @await Component.InvokeAsync("DropdownUltimosLocaisAdicionados")
+        </div>
+        <div class="item item-5" style="overflow-y: auto;">
+            <div class="image-text">
+                <h3 class="text-white" id="Titulo">Ultimos eventos adicionados</h3>
+            </div>
+            @await Component.InvokeAsync("DropdownUltimosEventosAdicionados")
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

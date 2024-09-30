@@ -1,0 +1,24 @@
+﻿@model IEnumerable<projeto_cinema.Models.LocaisModel>
+
+<table class="table text-white">
+    <thead>
+        <tr>
+            <th scope="col">Nome do local</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Portões cadastrados</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var local in Model)
+            {
+                <tr>
+                    <td>@local.NomeLocal</td>
+                    <td>@local.Endereco</td>
+                    <td>@local.CadatroCatracas</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

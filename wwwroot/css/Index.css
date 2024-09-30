@@ -1,0 +1,122 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+#Titulo {
+    font-size: 20px;
+}
+
+#boneco {
+    width: 100px; /* Ajuste conforme necessário */
+    height: auto;
+}
+
+#casa-estrela {
+    width: 25px; /* Ajuste conforme necessário */
+    height: auto;
+}
+
+body {
+    margin-bottom: 60px;
+    background-image: url('../image/Grid (1).jpg');
+    background-size: cover; /* Ajusta a imagem para cobrir todo o fundo */
+    background-repeat: no-repeat; /* Evita a repetição da imagem */
+    background-position: center; /* Centraliza a imagem */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.conteiner {
+    display: grid;
+    grid-template-areas:
+        "i1 i1"
+        "i2 i3"
+        "i4 i5"
+        ;
+}
+
+.item-1 {
+    grid-area: i1;
+    background-color: transparent;
+}
+.item-2 {
+    grid-area: i2;
+    background-color: #2F3B28;
+    border-radius: 16px;
+}
+.item-3 {
+    grid-area: i3;
+    background-color: #461527;
+    border-radius: 16px;
+}
+.item-4 {
+    grid-area: i4;
+    background-color: #10141D;
+    border-radius: 16px;
+}
+.item-5 {
+    grid-area: i5;
+    background-color: #10141D;
+    border-radius: 16px;
+}
+
+.item {
+    margin: 10px;
+    padding: 10px;
+}
+
+.image-text {
+    display: flex;
+    align-items: center;
+}
+
+    .image-text img {
+        margin-right: 10px; /* Espaço entre a imagem e o texto */
+    }
+
+.btn-locais {
+    background-color: #28a745; /* Cor do botão */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px; /* Bordas arredondadas */
+}
+
+.btn-locais {
+    background-color: #CAD6EC; /* Cor do botão */
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 0 0 100px; /* Espaço à esquerda do botão */
+    cursor: pointer;
+    border-radius: 5px; /* Bordas arredondadas */
+}

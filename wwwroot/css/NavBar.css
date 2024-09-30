@@ -1,0 +1,41 @@
+.navbar {
+    background-color: transparent; /* Fundo totalmente transparente */
+    border: none; /* Remove qualquer borda */
+}
+
+.seta {
+    width: 20px; /* Ajuste conforme necessário */
+    height: auto;
+    margin-left: 15px; /* Ajuste o valor conforme necessário */
+}
+
+#logoNaveBar {
+    width: 150px; /* Ajuste conforme necessário */
+    height: auto;
+}
+
+#anotherImage {
+    width: 50px; /* Ajuste conforme necessário */
+    height: auto;
+}
+
+.navbar-nav .nav-item {
+    margin-left: 20px; /* Espaçamento entre os itens do menu */
+}
+
+.nav-link {
+    color: white; /* Cor do texto dos links */
+}
+
+.btn-primary {
+    background-color: rgba(0, 123, 255, 0.5); /* Botão com fundo azul e 50% de transparência */
+    border: none; /* Remove a borda do botão */
+}
+
+.navbar-brand {
+    margin-left: 74px; /* Ajuste conforme necessário */
+}
+
+.d-flex.align-items-center {
+    margin-right: 55px; /* Ajuste conforme necessário */
+}

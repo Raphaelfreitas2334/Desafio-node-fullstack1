@@ -1,0 +1,25 @@
+﻿@model List<EventosModel>
+
+@{
+    HashSet<int> eventosProcessados = ViewData["EventosProcessados"] as HashSet<int> ?? new HashSet<int>();
+}
+
+@if (Model != null && Model.Any())
+{
+    bool status = true;
+
+    foreach (EventosModel eventos in Model)
+    {
+        if (!eventosProcessados.Contains(eventos.Id) && status)
+        {
+            <a class="dropdown-item btn btn-sm" asp-area="" asp-controller="Eventos" asp-action="Editar" asp-route-id="@eventos.Id">
+                Editar
+            </a>
+            <a onclick="javascript:" class="dropdown-item btn btn-sm btn-Modal-Editar-Evento" eventos-id="@eventos.Id">
+                Excluir
+            </a>
+            eventosProcessados.Add(eventos.Id);
+            status = false;
+        }
+    }
+}
